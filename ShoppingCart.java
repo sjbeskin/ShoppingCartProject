@@ -11,7 +11,7 @@ public class ShoppingCart {
     public void add(ItemOrder newItemOrder) {
         for (int i = 0; i < itemOrders.size(); i++) {
             Item item = itemOrders.get(i).getItem();
-            if (item.toString().equals(item.toString())) {
+            if (item.toString().equals(newItemOrder.getItem().toString())) {
                 itemOrders.set(i, newItemOrder);
                 return;
             }
