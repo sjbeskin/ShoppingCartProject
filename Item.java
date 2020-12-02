@@ -7,7 +7,7 @@ public class Item {
     int bulkQuantity; 
     double bulkPrice; 
 
-    public Item(String name, int price) {
+    public Item(String name, double price) {
         this.name = name;
         this.price = price; 
         this.bulkPrice = -1;
@@ -18,7 +18,7 @@ public class Item {
         }
     }
 
-    public Item(String name, int price, int bulkQuantity, int bulkPrice) {
+    public Item(String name, double price, int bulkQuantity, double bulkPrice) {
         this.name = name;
         this.price = price;
         this.bulkQuantity = bulkQuantity;
@@ -39,7 +39,7 @@ public class Item {
         } else { 
             int numBulkQuantities = (quantity / bulkQuantity); 
             int numExcess = quantity % bulkQuantity;
-            return (numBulkQuantities * bulkQuantity) + (numExcess * price);
+            return (numBulkQuantities * bulkPrice) + (numExcess * price);
         }
 
     }
