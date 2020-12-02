@@ -1,3 +1,4 @@
+import java.text.NumberFormat;
 import java.util.*;
 
 public class Item {
@@ -11,6 +12,10 @@ public class Item {
         this.price = price; 
         this.bulkPrice = -1;
         this.bulkQuantity = -1; 
+
+        if (price < 0) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public Item(String name, int price, int bulkQuantity, int bulkPrice) {
@@ -18,29 +23,34 @@ public class Item {
         this.price = price;
         this.bulkQuantity = bulkQuantity;
         this.bulkPrice = bulkPrice; 
+
+        if (price < 0 || bulkQuantity < 0 || bulkPrice < 0) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public double priceFor(int quantity) {
-        int numBulkQuantities = (quantity / bulkQuantity); 
-
-        int numExcess = quantity % bulkQuantity;
-
-        double finalPrice = (numBulkQuantities * bulkQuantity) + (numExcess * price);
-
-        if (finalPrice < 0) {
-            throw new IllegalArgumentException(); 
-        } else {
-            return finalPrice; 
+        if (quantity < 0) {
+            throw new IllegalArgumentException();
         }
 
+        if (bulkQuantity < 0 || bulkPrice < 0) {
+            return price * quantity; 
+        } else { 
+            int numBulkQuantities = (quantity / bulkQuantity); 
+            int numExcess = quantity % bulkQuantity;
+            return (numBulkQuantities * bulkQuantity) + (numExcess * price);
+        }
 
     }
 
     public String toString() {
-        String finalString = name + ", $" + price;
+        NumberFormat nf = NumberFormat.getCurrencyInstance(); 
+
+        String finalString = name + nf.format(price);
 
         if (bulkPrice != -1) {
-            finalString += " (" + bulkQuantity + " for " + "$" + bulkPrice + ")";
+            finalString += " (" + bulkQuantity + " for " + nf.format(bulkPrice) + ")";
         }
 
         return finalString; 
