@@ -8,25 +8,26 @@ public class Item {
     double bulkPrice; 
 
     public Item(String name, double price) {
+        if (price < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        
         this.name = name;
         this.price = price; 
         this.bulkPrice = -1;
         this.bulkQuantity = -1; 
-
-        if (price < 0) {
-            throw new IllegalArgumentException();
-        }
     }
 
     public Item(String name, double price, int bulkQuantity, double bulkPrice) {
+        if (price < 0 || bulkQuantity < 0 || bulkPrice < 0) {
+            throw new IllegalArgumentException();
+        }
+
         this.name = name;
         this.price = price;
         this.bulkQuantity = bulkQuantity;
         this.bulkPrice = bulkPrice; 
-
-        if (price < 0 || bulkQuantity < 0 || bulkPrice < 0) {
-            throw new IllegalArgumentException();
-        }
     }
 
     public double priceFor(int quantity) {
