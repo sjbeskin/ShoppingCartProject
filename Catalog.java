@@ -14,7 +14,7 @@ public class Catalog{
     myCatalog.add(toAdd);
   }
   
-  //return the index of a given item
+  //returns the item at a given index
   public Item get(int index){
     return myCatalog.get(index);
   }

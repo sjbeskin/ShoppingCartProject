@@ -24,7 +24,7 @@ public class ShoppingCart {
         itemOrders.add(newItemOrder);
     }
     
-    //set the current discount
+    //set the current discount to true or false/applied or not applied
     public void setDiscount(boolean discount) {
         this.discount = discount;
     }

@@ -17,7 +17,7 @@ public class ItemOrder {
         return myItem.priceFor(quantity);
     }
     
-    //returns the given Item
+    //returns a reference to the Item
     public Item getItem() {
         return myItem;
     }
